@@ -1,5 +1,6 @@
 import logging
 import sys
+from urlparse import urljoin
 from pkg_resources import iter_entry_points
 
 from consumer import Consumer
