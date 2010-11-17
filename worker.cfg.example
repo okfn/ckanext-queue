@@ -1,0 +1,13 @@
+[worker]
+ckan.site_id = local_test
+ckan.site_url = http://localhost:5000
+ckan.api_key = c919d7d1-180f-47ae-8338-a10863182d5c
+
+# queue.name = 
+# queue.routing_key = *
+
+# queue.port = 
+# queue.user_id =
+# queue.password = 
+# queue.hostname = 
+# queue.virtual_host =
