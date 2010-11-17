@@ -63,4 +63,3 @@ NOTE: When used as a command line tool, the amqp configuration is passed
 in as an URL of the format::
 
   amqp://user:password@host/virtual_host
-

@@ -28,6 +28,9 @@ setup(
     [ckan.plugins]
     queue = ckanext.queue.extension:QueueNotifier
     
+    [ckan.workers]
+    echo = ckanext.queue.echo:EchoWorker
+    
     [console_scripts]
     worker = ckanext.queue.worker:main
 	""",

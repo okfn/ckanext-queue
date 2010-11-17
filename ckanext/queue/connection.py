@@ -30,7 +30,7 @@ def get_consumer(config, queue_name, routing_key):
 
 def get_carrot_connection(config):
     backend = config.get('queue.library', 'pyamqplib')
-    logger.info("Carrot connnection using %s backend" % backend)
+    log.info("Carrot connnection using %s backend" % backend)
     try:
         port = int(config.get('queue.port', PORT))
     except ValueError:

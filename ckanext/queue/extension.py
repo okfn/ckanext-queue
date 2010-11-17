@@ -14,16 +14,16 @@ class QueueNotifier(SingletonPlugin):
     implements(IDomainObjectModification)
     
     @property
-    def publisher(cls):
-        if getattr(cls, '_publisher', None) is None:
-            cls._publisher = get_publisher(self.config)
-        return cls._publisher
+    def publisher(self):
+        if getattr(self, '_publisher', None) is None:
+            self._publisher = get_publisher(self.config)
+        return self._publisher
     
     def configure(self, config):
         self.config = config
         
     def notify(self, entity, operation):
-        log.debug('notify: %s' % entity)
+        log.info('notify: %s' % entity.id)
         if not hasattr(entity, 'as_dict'):
             log.debug('Cannot serialize: %s' % entity)
             return 
