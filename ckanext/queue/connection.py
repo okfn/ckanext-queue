@@ -26,7 +26,7 @@ def get_consumer(config, queue_name, routing_key):
                     routing_key=routing_key,
                     exchange_type=EXCHANGE_TYPE,
                     exchange=config.get('ckan.site_id'),
-                    durable=False, auto_delete=True)
+                    durable=True, auto_delete=False)
 
 def get_carrot_connection(config):
     backend = config.get('queue.library', 'pyamqplib')

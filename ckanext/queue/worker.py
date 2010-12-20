@@ -38,7 +38,7 @@ class WorkerChain(Worker):
     def __init__(self, workers, config):
         self.workers = []
         self.known_workers = self._find_workers()
-        log.debug("Known workers: %s", " ".join(self.known_workers))
+        log.info("Known workers: %s", " ".join(self.known_workers))
 
         for worker_name in workers:
             if worker_name in self.known_workers.keys():

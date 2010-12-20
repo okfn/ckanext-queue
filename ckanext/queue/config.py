@@ -16,7 +16,7 @@ def make_optparse(parser=None):
     parser.add_option('-c', '--config', dest='config_file', help='worker config file')
     parser.add_option('-s', '--section', dest='section', default=DEFAULT_SECTION, 
                       help='relevant section in config file')
-    parser.add_option('-q', '--queue', dest='queue', help='queue name')
+    parser.add_option('-q', '--queue', dest='queue', help='queue name', default='ckan_worker')
     parser.add_option('-r', '--routing-key', dest='routing_key', help='queue routing key')
     parser.add_option('-a', '--amqp-url', dest='amqp', help='URL for the amqp host')
     parser.add_option('-i', '--site-id', dest='ckan.site_id', help='CKAN site ID')
