@@ -19,13 +19,13 @@ def get_publisher(config):
     return Publisher(connection=get_carrot_connection(config),
                      exchange=config.get('ckan.site_id'),
                      exchange_type=EXCHANGE_TYPE)
-                     
+
 def get_consumer(config, queue_name, routing_key):
     return Consumer(connection=get_carrot_connection(config),
                     queue=queue_name, 
                     routing_key=routing_key,
-                    exchange_type=EXCHANGE_TYPE,
                     exchange=config.get('ckan.site_id'),
+                    exchange_type=EXCHANGE_TYPE,
                     durable=True, auto_delete=False)
 
 def get_carrot_connection(config):

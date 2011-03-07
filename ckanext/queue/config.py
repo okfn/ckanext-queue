@@ -4,6 +4,8 @@ import logging
 import optparse
 from urlparse import urlparse
 
+from paste.script.util.logging_config import fileConfig
+
 DEFAULT_SECTION = 'worker'
 
 class attrDict(dict): 
@@ -22,7 +24,6 @@ def make_optparse(parser=None):
     parser.add_option('-i', '--site-id', dest='ckan.site_id', help='CKAN site ID')
     parser.add_option('-u', '--site-url', dest='ckan.site_url', help='CKAN site URL')
     parser.add_option('-k', '--api-key', dest='ckan.api_key', help='CKAN api key')    
-    parser.add_option('-d', action="store_true", dest='verbose', help='debug output', default=False)    
     return parser
 
 
@@ -31,7 +32,13 @@ def read_config(section, config_file=None):
     if config_file is None:
         logging.warn("No config file specified, using worker.cfg")
         config_file = 'worker.cfg'
-    config.read([config_file, os.path.expanduser('~/.ckanworker.cfg')])
+    configs = [config_file, os.path.expanduser('~/.ckanworker.cfg')]
+    config.read(configs)
+    for c in configs: 
+        try:
+            fileConfig(c)
+            break
+        except: pass
     data = config.defaults()
     try:
         data.update(dict(config.items(section)))
@@ -49,11 +56,6 @@ def run_parser(parser):
         options['amqp_user_id'] = url.username 
         options['amqp_hostname'] = url.password
         options['amqp_virtual_host'] = url.path.strip("/")
-        
-    if 'verbose' in options:
-        logging.basicConfig(level=logging.DEBUG)
-    else:
-        logging.basicConfig(level=logging.INFO)
     
     config = read_config(options.get('section', DEFAULT_SECTION), 
                          options.get('config_file'))

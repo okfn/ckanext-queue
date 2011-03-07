@@ -11,3 +11,28 @@ ckan.api_key = c919d7d1-180f-47ae-8338-a10863182d5c
 # queue.password = 
 # queue.hostname = 
 # queue.virtual_host =
+
+
+# Logging configuration
+[loggers]
+keys = root
+
+[handlers]
+keys = smtp
+
+[formatters]
+keys = generic
+
+[logger_root]
+level = INFO
+handlers = smtp
+
+[handler_smtp]
+class = handlers.SMTPHandler
+args = ('mail.okfn.org', 'worker@factory.ckan.net', ['sysadmin@okfn.org'], 'Worker Failure')
+level = NOTSET
+formatter = generic
+
+[formatter_generic]
+format = %(asctime)s %(levelname)-5.5s [%(name)s] %(message)s
+

@@ -25,7 +25,6 @@ class Worker(Consumer, CkanClient):
         Consumer.__init__(self, config, 
                           queue_name=queue_name,
                           routing_key=routing_key)
-                                
 
 class WorkerChain(Worker):
 
@@ -60,7 +59,6 @@ class WorkerChain(Worker):
                 worker.consume(routing_key, operation, payload)
             except Exception, e:
                 log.exception(e)
-                
 
 def main():
     from config import configure

@@ -21,7 +21,7 @@ setup(
 	install_requires=[
           'carrot>=0.10.5',
           'ckanclient>=0.3',
-          '',
+          'pastescript>=1.7.3',
 	],
 	entry_points=\
 	"""
